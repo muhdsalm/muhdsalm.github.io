@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,40 +8,98 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <title>The Minimal, International Language</title>
     <link rel="icon" href="/favicon.svg" sizes="any" type="image/svg+xml" />
+    <script>
+        function refreshDarkMode() {
+            if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark')
+                document.querySelector("link[rel~='icon']").href = "/favicon-dark.svg";
+                for (var v of document.getElementsByClassName('favicon')) {
+                    v.src = "/favicon-dark.svg"
+                }
+                //                document.body.classList.push("dark")
+                var colorSchemeSwitch = document.getElementById('color-scheme-switch')
+                colorSchemeSwitch.classList.remove("bi-sun")
+                colorSchemeSwitch.classList.add("bi-moon")
+            } else {
+                document.documentElement.classList.remove('dark')
+                document.querySelector("link[rel~='icon']").href = "/favicon.svg";
+                for (var v of document.getElementsByClassName('favicon')) {
+                    v.src = "/favicon.svg"
+                }
+                document.documentElement.style.setProperty('color-scheme', 'only light')
+                var colorSchemeSwitch = document.getElementById('color-scheme-switch')
+                colorSchemeSwitch.classList.remove("bi-moon")
+                colorSchemeSwitch.classList.add("bi-sun")
+            }
+        }
+        refreshDarkMode()
+
+        function switchColorSchemes() {
+            if (localStorage.theme === 'dark') {
+                localStorage.theme = 'light'
+            }
+            else {
+                localStorage.theme = 'dark'
+            }
+            refreshDarkMode()
+        }
+    </script>
 </head>
 
 
-    <body class="self-center align-middle text-center items-center overflow-x-hidden">
-        <div class=" text-left items-start fixed w-full">
-<ul class="bg-white py-3">
-    <li class="inline px-2 ps-4 tracking-tight montserrat-semibold align-middle"><a href="/"> <img src="/favicon.svg" alt="Home" class="inline size-9 align-middle"></a></li>
-    <li class="inline px-2 tracking-tight montserrat-semibold align-middle"><a href="/about"> About Mini </a></li>
-    <li class="inline px-2 tracking-tight montserrat-semibold align-middle disappearing"><a href="/learn"> Learn Mini </a></li>
-    <li class="inline px-2 tracking-tight montserrat-semibold align-middle disappearing"><a href="https://jprogr.github.io/buku-name"> Dictionary </a></li>
-    <li class="inline px-2 tracking-tight montserrat-semibold align-middle disappearing"><a href="/translations"> Translations </a></li>
-    <li class="inline px-2 tracking-tight montserrat-semibold align-middle disappearing"><a href="https://minilang.fandom.com/wiki/Mini_Wiki"> Wiki </a></li>
 
-    <li class="inline px-2 pe-4 align-middle float-right "> <a href="https://discord.gg/ajA6Z4VrkJ"><i class="bi bi-discord text-2xl align-middle"></i></a></li>
-    <li class="inline px-2 align-middle float-right "> <a href="https://www.reddit.com/r/MiniLang/"><i class="bi bi-reddit text-2xl align-middle"></i></a></li>
-</ul>
-<hr class="border-0 bg-gray-400" style="height: 0.5px;">
+<body class="self-center align-middle text-center items-center overflow-x-hidden dark:bg-black">
+    <div class=" text-left items-start fixed w-full">
+        <ul class="bg-white dark:bg-black py-3">
+                <li class="inline px-2 ps-4 tracking-tight montserrat-semibold align-middle dark:text-white"><a
+                                href="/"> <img src="/favicon.svg" alt="Home"
+                                        class="inline size-9 align-middle favicon"></a></li>
+                <li class="inline px-2 tracking-tight montserrat-semibold align-middle dark:text-white"><a
+                                href="/about"> About
+                                Mini </a></li>
+                <li class="inline px-2 tracking-tight montserrat-semibold align-middle disappearing dark:text-white"><a
+                                href="/learn"> Learn
+                                Mini </a></li>
+                <li class="inline px-2 tracking-tight montserrat-semibold align-middle disappearing dark:text-white"><a
+                                href="https://jprogr.github.io/buku-name"> Dictionary </a></li>
+                <li class="inline px-2 tracking-tight montserrat-semibold align-middle disappearing dark:text-white"><a
+                                href="/translations">
+                                Translations </a></li>
+                <li class="inline px-2 tracking-tight montserrat-semibold align-middle disappearing dark:text-white"><a
+                                href="https://minilang.fandom.com/wiki/Mini_Wiki"> Wiki </a></li>
+
+                <li class="inline px-2 pe-4 align-middle float-right "> <a href="https://discord.gg/ajA6Z4VrkJ"><i
+                                        class="bi bi-discord text-2xl align-middle dark:text-white"></i></a></li>
+                <li class="inline px-2 align-middle float-right "> <a href="https://www.reddit.com/r/MiniLang/"><i
+                                        class="bi bi-reddit text-2xl align-middle dark:text-white"></i></a></li>
+                <li class="inline px-2 align-middle float-right "> <button onclick="switchColorSchemes()" class="bg-transparent"><i
+                                        id="color-scheme-switch"
+                                        class="bi bi-sun text-2xl align-middle dark:text-white"></i></a></li>
+
+        </ul>
+        <hr class="border-0 bg-gray-400" style="height: 0.5px;">
 </div>
 
 
 
 
-    <div class="w-full h-screen">
-        <img src="/favicon.svg" alt="Home" class="inline align-middle" style="width: 15rem; height: 15rem; margin-top: 7%" id="logo">
-        <h1 class="poppins-bold text-2xl md:text-5xl">The Minimal, International Language</h1>
-        <h1 class="poppins-italic text-2xl md:text-5xl">Mini, Ale-mundo Linga</h1>
-        
-            <div class=" mt-16 text-xl text-gray-400"><i class="bi bi-chevron-double-down inline text-3xl align-middle"></i> <p class="inline align-middle poppins-regular">Scroll Down</p> <i class="bi bi-chevron-double-down inline text-3xl align-middle"></i></div>
-        
+<div class="w-full h-screen">
+    <img src="/favicon.svg" alt="Home" class="inline align-middle favicon"
+        style="width: 15rem; height: 15rem; margin-top: 7%" id="logo">
+    <h1 class="poppins-bold text-2xl md:text-5xl dark:text-white">The Minimal, International Language</h1>
+    <h1 class="poppins-italic text-2xl md:text-5xl dark:text-white">Mini, Ale-mundo Linga</h1>
+    
+    <div class=" mt-16 text-xl text-gray-400 dark:text-gray-600"><i
+            class="bi bi-chevron-double-down inline text-3xl align-middle"></i>
+        <p class="inline align-middle poppins-regular">Scroll Down</p> <i
+            class="bi bi-chevron-double-down inline text-3xl align-middle"></i>
     </div>
+    
+</div>
 
-    <div class=" w-3/5 m-auto text-xl md:text-2xl poppins-regular text-gray-600 -mt-20 md:mt-10">
-        <p>Mini is a language that wants to be the language of the world. It aims to achive this by having a very simple grammar and very few words. In fact, Mini only takes around 20 minutes to learn, and only has 1000 words. <a href="/about" class=" text-gray-800">Learn More</a></p>
-    </div>
+<div class=" w-3/5 m-auto text-xl md:text-2xl poppins-regular text-gray-600 -mt-20 md:mt-10 dark:text-gray-400">
+    <p>Mini is a language that wants to be the language of the world. It aims to achive this by having a very simple grammar and very few words. In fact, Mini only takes around 20 minutes to learn, and only has 1000 words. <a href="/about" class=" text-gray-800 dark:text-gray-200">Learn More</a></p>
+</div>
 
 
 
@@ -51,92 +110,108 @@
             document.getElementById('logo').style.height = '7rem'
             document.getElementById('logo').style.marginTop = '40%'
         }
-        catch {}
+        catch { }
 
-        try{
+        try {
             document.getElementById('logo2').style.width = '7rem'
             document.getElementById('logo2').style.height = '1rem'
             document.getElementById('logo2').style.marginTop = '40%'
         }
-        catch {}
+        catch { }
     }
 </script>
 
 
-    <p> </p>
-    <div class="w-full mt-20" >
-            <div class="text-start ml-16 w-3/4 md:w-1/2 float-left mt-16 inline-block">
-                <p class="text-3xl md:text-5xl poppins-regular -mb-5 leading-none">Learn Mini</p>
-                <p class="text-2xl md:text-3xl poppins-lightitalic mt-4 disappearing">i etudi a Mini</p>
-                <p class="text-1xl md:text-2xl text-gray-600 mt-8 md:mt-16 poppins-regular">The grammar of Mini can be learned in 20 minutes or less. Check it out!</p>
-                <button class="text-base md:text-xl bg-gray-200 w-48 md:w-72 h-12 md:h-16 mt-10 float-end rounded-lg poppins-regular" onclick="window.location.href='/learn'">Learn Mini</button>
-            </div>
-            <i class="bi bi-lightbulb disappearing text-gray-600 mt-16 ml-16" style=" font-size: 300px"></i>
-        </div>
-    
-    <p> </p>
-    <div class=" w-full float-left md:float-right mr-16 mt-20">
-            <div class=" text-start md:text-end ml-16 w-3/4 md:w-1/2 float-left md:float-right mt-16">
-                <p class="text-3xl md:text-5xl poppins-regular -mb-5">View The Dictionary</p>
-                <p class="text-2xl md:text-3xl poppins-lightitalic disappearing">i mira a name-buku</p>
-                <p class="text-1xl md:text-2xl text-gray-600 mt-8 md:mt-16 poppins-regular">Mini has around 1000 words. In comparison, English has around 171,000. You can use the [unofficial] Mini-English dictionary by JProgr!</p>
-                <button class="text-base md:text-xl bg-gray-200 w-48 md:w-72 h-12 md:h-16 mt-10 md:float-start float-end rounded-lg poppins-regular" onclick="window.location.href='https://jprogr.github.io/buku-name/'">View the dictionary</button>
-            </div>
-            <i class="bi bi-journal-bookmark-fill disappearing text-gray-600 mt-16 ml-16" style=" font-size: 300px"></i>
-        </div>
-    
-    <p> </p>
-    <div class="w-full mt-20" >
-            <div class="text-start ml-16 w-3/4 md:w-1/2 float-left mt-16 inline-block">
-                <p class="text-3xl md:text-5xl poppins-regular -mb-5 leading-none">Read The Translations</p>
-                <p class="text-2xl md:text-3xl poppins-lightitalic mt-4 disappearing">i leje a via-linga</p>
-                <p class="text-1xl md:text-2xl text-gray-600 mt-8 md:mt-16 poppins-regular">Practice your Mini by reading and trying to understand the many texts that have been translated to Mini.</p>
-                <button class="text-base md:text-xl bg-gray-200 w-48 md:w-72 h-12 md:h-16 mt-10 float-end rounded-lg poppins-regular" onclick="window.location.href='/translations'">Read the translations</button>
-            </div>
-            <i class="bi bi-translate disappearing text-gray-600 mt-16 ml-16" style=" font-size: 300px"></i>
-        </div>
-    
-    <p> </p>
-    <div class=" w-full float-left md:float-right mr-16 mt-20">
-            <div class=" text-start md:text-end ml-16 w-3/4 md:w-1/2 float-left md:float-right mt-16">
-                <p class="text-3xl md:text-5xl poppins-regular -mb-5">Contribute To The Wiki</p>
-                <p class="text-2xl md:text-3xl poppins-lightitalic disappearing">i note go info-neto-loke</p>
-                <p class="text-1xl md:text-2xl text-gray-600 mt-8 md:mt-16 poppins-regular">Yup, Mini has a wiki. It's pretty barebones right now, so it would be great if someone contributed to it.</p>
-                <button class="text-base md:text-xl bg-gray-200 w-48 md:w-72 h-12 md:h-16 mt-10 md:float-start float-end rounded-lg poppins-regular" onclick="window.location.href='https://minilang.fandom.com/wiki/Mini_Wiki'">Read the wiki</button>
-            </div>
-            <i class="bi bi-globe disappearing text-gray-600 mt-16 ml-16" style=" font-size: 300px"></i>
-        </div>
-    
-    <p> </p>
-    <div class="w-full mt-20" >
-            <div class="text-start ml-16 w-3/4 md:w-1/2 float-left mt-16 inline-block">
-                <p class="text-3xl md:text-5xl poppins-regular -mb-5 leading-none">Join The Community</p>
-                <p class="text-2xl md:text-3xl poppins-lightitalic mt-4 disappearing">i junta a komun</p>
-                <p class="text-1xl md:text-2xl text-gray-600 mt-8 md:mt-16 poppins-regular">Get help or talk to others by joining the Mini Discord server or the Mini subreddit.</p>
-                <button class="text-base md:text-xl bg-gray-200 w-48 md:w-72 h-12 md:h-16 mt-10 float-end rounded-lg poppins-regular" onclick="window.location.href='https://discord.gg/ajA6Z4VrkJ'">Join the community</button>
-            </div>
-            <i class="bi bi-people disappearing text-gray-600 mt-16 ml-16" style=" font-size: 300px"></i>
-        </div>
+
+<p> </p>
+<div class="w-full mt-20">
+    <div class="text-start ml-16 w-3/4 md:w-1/2 float-left mt-16 inline-block dark:text-white">
+        <p class="text-3xl md:text-5xl poppins-regular -mb-5 leading-none">Learn Mini</p>
+        <p class="text-2xl md:text-3xl poppins-lightitalic mt-4 disappearing">i etudi a Mini</p>
+        <p class="text-1xl md:text-2xl text-gray-600 dark:text-gray-400 mt-8 md:mt-16 poppins-regular">
+            The grammar of Mini can be learned in 20 minutes or less. Check it out!</p>
+        <a class="text-base md:text-xl bg-gray-200 dark:bg-gray-800 w-48 md:w-72 h-12 md:h-16 mt-10 float-end rounded-lg poppins-regular text-center leading-[4rem]"
+            href='/learn'>Learn Mini</a>
+    </div>
+    <i class="bi bi-lightbulb disappearing text-gray-600 dark:text-gray-400 mt-16 ml-16" style=" font-size: 300px"></i>
+</div>
+
+<p> </p>
+<div class=" w-full float-left md:float-right mr-16 mt-20 dark:text-white">
+    <div class=" text-start md:text-end ml-16 w-3/4 md:w-1/2 float-left md:float-right mt-16">
+        <p class="text-3xl md:text-5xl poppins-regular -mb-5">View The Dictionary</p>
+        <p class="text-2xl md:text-3xl poppins-lightitalic disappearing">i mira a name-buku</p>
+        <p class="text-1xl md:text-2xl text-gray-600 dark:text-gray-400 mt-8 md:mt-16 poppins-regular">
+            Mini has around 1000 words. In comparison, English has around 171,000. You can use the [unofficial] Mini-English dictionary by JProgr!</p>
+        <a class="text-base md:text-xl bg-gray-200 dark:bg-gray-800 w-48 md:w-72 h-12 md:h-16 mt-10 md:float-start float-end rounded-lg poppins-regular text-center leading-[4rem]"
+            href='https://jprogr.github.io/buku-name/'>View the dictionary</a>
+
+    </div>
+    <i class="bi bi-journal-bookmark-fill disappearing text-gray-600 dark:text-gray-400 mt-16 ml-16" style=" font-size: 300px"></i>
+</div>
+
+<p> </p>
+<div class="w-full mt-20">
+    <div class="text-start ml-16 w-3/4 md:w-1/2 float-left mt-16 inline-block dark:text-white">
+        <p class="text-3xl md:text-5xl poppins-regular -mb-5 leading-none">Read The Translations</p>
+        <p class="text-2xl md:text-3xl poppins-lightitalic mt-4 disappearing">i leje a via-linga</p>
+        <p class="text-1xl md:text-2xl text-gray-600 dark:text-gray-400 mt-8 md:mt-16 poppins-regular">
+            Practice your Mini by reading and trying to understand the many texts that have been translated to Mini.</p>
+        <a class="text-base md:text-xl bg-gray-200 dark:bg-gray-800 w-48 md:w-72 h-12 md:h-16 mt-10 float-end rounded-lg poppins-regular text-center leading-[4rem]"
+            href='/translations'>Read the translations</a>
+    </div>
+    <i class="bi bi-translate disappearing text-gray-600 dark:text-gray-400 mt-16 ml-16" style=" font-size: 300px"></i>
+</div>
+
+<p> </p>
+<div class=" w-full float-left md:float-right mr-16 mt-20 dark:text-white">
+    <div class=" text-start md:text-end ml-16 w-3/4 md:w-1/2 float-left md:float-right mt-16">
+        <p class="text-3xl md:text-5xl poppins-regular -mb-5">Contribute To The Wiki</p>
+        <p class="text-2xl md:text-3xl poppins-lightitalic disappearing">i note go info-neto-loke</p>
+        <p class="text-1xl md:text-2xl text-gray-600 dark:text-gray-400 mt-8 md:mt-16 poppins-regular">
+            Yup, Mini has a wiki. It's pretty barebones right now, so it would be great if someone contributed to it.</p>
+        <a class="text-base md:text-xl bg-gray-200 dark:bg-gray-800 w-48 md:w-72 h-12 md:h-16 mt-10 md:float-start float-end rounded-lg poppins-regular text-center leading-[4rem]"
+            href='https://minilang.fandom.com/wiki/Mini_Wiki'>Read the wiki</a>
+
+    </div>
+    <i class="bi bi-globe disappearing text-gray-600 dark:text-gray-400 mt-16 ml-16" style=" font-size: 300px"></i>
+</div>
+
+<p> </p>
+<div class="w-full mt-20">
+    <div class="text-start ml-16 w-3/4 md:w-1/2 float-left mt-16 inline-block dark:text-white">
+        <p class="text-3xl md:text-5xl poppins-regular -mb-5 leading-none">Join The Community</p>
+        <p class="text-2xl md:text-3xl poppins-lightitalic mt-4 disappearing">i junta a komun</p>
+        <p class="text-1xl md:text-2xl text-gray-600 dark:text-gray-400 mt-8 md:mt-16 poppins-regular">
+            Get help or talk to others by joining the Mini Discord server or the Mini subreddit.</p>
+        <a class="text-base md:text-xl bg-gray-200 dark:bg-gray-800 w-48 md:w-72 h-12 md:h-16 mt-10 float-end rounded-lg poppins-regular text-center leading-[4rem]"
+            href='https://discord.gg/ajA6Z4VrkJ'>Join the community</a>
+    </div>
+    <i class="bi bi-people disappearing text-gray-600 dark:text-gray-400 mt-16 ml-16" style=" font-size: 300px"></i>
+</div>
+
+
+
+<div
+    class=" text-center mt-40 bg-gray-200 dark:bg-gray-800 poppins-regular text-xs md:text-base h-10 flex w-full items-center content-center justify-center">
+    <p class="dark:text-white">This page and all materials pertaining to the Mini Language linked herein are under
+        licensed under CC
+        BY-SA 4.0 unless otherwise noted</p>
+</div>
+
     
 
-<div class=" text-center mt-40 bg-gray-200 poppins-regular text-xs md:text-base h-10 flex w-full items-center content-center justify-center"><p class="">This page and all materials pertaining to the Mini Language linked herein are under licensed under CC BY-SA 4.0 unless otherwise noted</p></div>
-
-
-    
 </body>
 
 <script>
-    console.log(screen.width)
     if (screen.width < 768) {
         var disappearing = document.getElementsByClassName('disappearing')
-        console.log(disappearing)
         var i = 0
-        while(i < disappearing.length) {
-            console.log(i)
+        while (i < disappearing.length) {
             disappearing.item(i).remove()
-            console.log('removing..')
         }
-        console.log(document.getElementsByClassName('disappearing'))
     }
+    refreshDarkMode()
 </script>
+
 </html>

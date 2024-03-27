@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,37 +8,90 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <title>Page Not Found</title>
     <link rel="icon" href="/favicon.svg" sizes="any" type="image/svg+xml" />
+    <script>
+        function refreshDarkMode() {
+            if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark')
+                document.querySelector("link[rel~='icon']").href = "/favicon-dark.svg";
+                for (var v of document.getElementsByClassName('favicon')) {
+                    v.src = "/favicon-dark.svg"
+                }
+                //                document.body.classList.push("dark")
+                var colorSchemeSwitch = document.getElementById('color-scheme-switch')
+                colorSchemeSwitch.classList.remove("bi-sun")
+                colorSchemeSwitch.classList.add("bi-moon")
+            } else {
+                document.documentElement.classList.remove('dark')
+                document.querySelector("link[rel~='icon']").href = "/favicon.svg";
+                for (var v of document.getElementsByClassName('favicon')) {
+                    v.src = "/favicon.svg"
+                }
+                document.documentElement.style.setProperty('color-scheme', 'only light')
+                var colorSchemeSwitch = document.getElementById('color-scheme-switch')
+                colorSchemeSwitch.classList.remove("bi-moon")
+                colorSchemeSwitch.classList.add("bi-sun")
+            }
+        }
+        refreshDarkMode()
+
+        function switchColorSchemes() {
+            if (localStorage.theme === 'dark') {
+                localStorage.theme = 'light'
+            }
+            else {
+                localStorage.theme = 'dark'
+            }
+            refreshDarkMode()
+        }
+    </script>
 </head>
 
 
-    <body class="self-center align-middle text-center items-center overflow-x-hidden overflow-y-hidden">
-        <div class=" text-left items-start fixed w-full">
-<ul class="bg-white py-3">
-    <li class="inline px-2 ps-4 tracking-tight montserrat-semibold align-middle"><a href="/"> <img src="/favicon.svg" alt="Home" class="inline size-9 align-middle"></a></li>
-    <li class="inline px-2 tracking-tight montserrat-semibold align-middle"><a href="/about"> About Mini </a></li>
-    <li class="inline px-2 tracking-tight montserrat-semibold align-middle disappearing"><a href="/learn"> Learn Mini </a></li>
-    <li class="inline px-2 tracking-tight montserrat-semibold align-middle disappearing"><a href="https://jprogr.github.io/buku-name"> Dictionary </a></li>
-    <li class="inline px-2 tracking-tight montserrat-semibold align-middle disappearing"><a href="/translations"> Translations </a></li>
-    <li class="inline px-2 tracking-tight montserrat-semibold align-middle disappearing"><a href="https://minilang.fandom.com/wiki/Mini_Wiki"> Wiki </a></li>
 
-    <li class="inline px-2 pe-4 align-middle float-right "> <a href="https://discord.gg/ajA6Z4VrkJ"><i class="bi bi-discord text-2xl align-middle"></i></a></li>
-    <li class="inline px-2 align-middle float-right "> <a href="https://www.reddit.com/r/MiniLang/"><i class="bi bi-reddit text-2xl align-middle"></i></a></li>
-</ul>
-<hr class="border-0 bg-gray-400" style="height: 0.5px;">
+<body class="self-center align-middle text-center items-center overflow-x-hidden overflow-y-hidden dark:bg-black">
+    <div class=" text-left items-start fixed w-full">
+        <ul class="bg-white dark:bg-black py-3">
+                <li class="inline px-2 ps-4 tracking-tight montserrat-semibold align-middle dark:text-white"><a
+                                href="/"> <img src="/favicon.svg" alt="Home"
+                                        class="inline size-9 align-middle favicon"></a></li>
+                <li class="inline px-2 tracking-tight montserrat-semibold align-middle dark:text-white"><a
+                                href="/about"> About
+                                Mini </a></li>
+                <li class="inline px-2 tracking-tight montserrat-semibold align-middle disappearing dark:text-white"><a
+                                href="/learn"> Learn
+                                Mini </a></li>
+                <li class="inline px-2 tracking-tight montserrat-semibold align-middle disappearing dark:text-white"><a
+                                href="https://jprogr.github.io/buku-name"> Dictionary </a></li>
+                <li class="inline px-2 tracking-tight montserrat-semibold align-middle disappearing dark:text-white"><a
+                                href="/translations">
+                                Translations </a></li>
+                <li class="inline px-2 tracking-tight montserrat-semibold align-middle disappearing dark:text-white"><a
+                                href="https://minilang.fandom.com/wiki/Mini_Wiki"> Wiki </a></li>
+
+                <li class="inline px-2 pe-4 align-middle float-right "> <a href="https://discord.gg/ajA6Z4VrkJ"><i
+                                        class="bi bi-discord text-2xl align-middle dark:text-white"></i></a></li>
+                <li class="inline px-2 align-middle float-right "> <a href="https://www.reddit.com/r/MiniLang/"><i
+                                        class="bi bi-reddit text-2xl align-middle dark:text-white"></i></a></li>
+                <li class="inline px-2 align-middle float-right "> <button onclick="switchColorSchemes()" class="bg-transparent"><i
+                                        id="color-scheme-switch"
+                                        class="bi bi-sun text-2xl align-middle dark:text-white"></i></a></li>
+
+        </ul>
+        <hr class="border-0 bg-gray-400" style="height: 0.5px;">
 </div>
 
 
 
 
-    <div class="w-full h-screen">
-        <img class="inline align-middle opacity-0" style="width: 15rem; height: 4rem; margin-top: 7%" id="logo2">
-        <h1 class="poppins-bold text-2xl md:text-5xl">Page Not Found</h1>
-        <h1 class="poppins-italic text-2xl md:text-5xl -mt-3 md:-mt-5">no kan deteki a note</h1>
-        <div class=" w-3/5 m-auto text-xl md:text-2xl poppins-regular text-gray-800 mt-10">
+<div class="w-full h-screen">
+    <img class="inline align-middle opacity-0" style="width: 15rem; height: 4rem; margin-top: 7%" id="logo2">
+    <h1 class="poppins-bold text-2xl md:text-5xl dark:text-white">Page Not Found</h1>
+    <h1 class="poppins-italic text-2xl md:text-5xl -mt-3 md:-mt-5 dark:text-white">no kan deteki a note</h1>
+    <div class=" w-3/5 m-auto text-xl md:text-2xl poppins-regular text-gray-800 dark:text-gray-200 mt-10">
         <p></p>
-        </div>
-        
     </div>
+    
+</div>
 
 
 <script>
@@ -47,38 +101,42 @@
             document.getElementById('logo').style.height = '7rem'
             document.getElementById('logo').style.marginTop = '40%'
         }
-        catch {}
+        catch { }
 
-        try{
+        try {
             document.getElementById('logo2').style.width = '7rem'
             document.getElementById('logo2').style.height = '1rem'
             document.getElementById('logo2').style.marginTop = '40%'
         }
-        catch {}
+        catch { }
     }
 </script>
 
 
 
-<div class=" text-center mt-40 bg-gray-200 poppins-regular text-xs md:text-base h-10 flex w-full items-center content-center justify-center"><p class="">This page and all materials pertaining to the Mini Language linked herein are under licensed under CC BY-SA 4.0 unless otherwise noted</p></div>
 
-    </body>    
 
-    
+<div
+    class=" text-center mt-40 bg-gray-200 dark:bg-gray-800 poppins-regular text-xs md:text-base h-10 flex w-full items-center content-center justify-center">
+    <p class="dark:text-white">This page and all materials pertaining to the Mini Language linked herein are under
+        licensed under CC
+        BY-SA 4.0 unless otherwise noted</p>
+</div>
+
+</body>
+
+
 </body>
 
 <script>
-    console.log(screen.width)
     if (screen.width < 768) {
         var disappearing = document.getElementsByClassName('disappearing')
-        console.log(disappearing)
         var i = 0
-        while(i < disappearing.length) {
-            console.log(i)
+        while (i < disappearing.length) {
             disappearing.item(i).remove()
-            console.log('removing..')
         }
-        console.log(document.getElementsByClassName('disappearing'))
     }
+    refreshDarkMode()
 </script>
+
 </html>
